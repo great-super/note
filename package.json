@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/great-super/note/issues"
   },
-  "homepage": "https://github.com/great-super/note#readme"
+  "homepage": "https://github.com/great-super/note#readme",
+  "devDependencies": {
+    "vuepress": "^1.1.0"
+  }
 }
