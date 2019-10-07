@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>qrcode</title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/qrcode@1.4.2/build/qrcode.min.js"></script>
+	<style type="text/css">
+		html,body,div,a{
+			margin: 0;
+			padding: 0;
+		}
+		.list{
+			padding: 10px 0 10px 10px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.page{
+			margin: 0 10px 10px;
+			width: 260px;
+			border: 1px solid #ccc;
+		}
+		.p-title{
+			text-align: center;
+			padding-bottom: 10px;
+		}
+		canvas{
+			width: 260px;
+			height: 260px;
+		}
+	</style>
+</head>
+<body>
+	<div class="list"></div>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script>
+		let html = [];
+		for(let i=1;i<500;i++) {
+			html.push(`
+				<a href="/note/${i}" target="_blank" class="page">
+					<canvas id="c_${i}" width="260" height="260"></canvas>
+					<div class="p-title">${i}</div>
+				</a>
+			`);
+		}
+		document.querySelector('.list').innerHTML = html.join('');
+		for(let i=1;i<500;i++){	
+		  QRCode.toCanvas(document.getElementById('c_'+i), 'https://great-super.github.io/note/'+i, {width:260},function (error) {
+		    if (error) console.error(error)
+		  })
+		}
+</script>
+</body>
+</html>
