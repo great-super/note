@@ -1,7 +1,7 @@
 git pull
 git add docs
-git commit docs -am 'd'
-git push docs
+git commit -m 'd'
+git push
 npx vuepress build docs
 cd docs/.vuepress/dist/
 git init
