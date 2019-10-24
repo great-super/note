@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>qrcode</title>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/qrcode@1.4.2/build/qrcode.min.js"></script>
+	<style type="text/css">
+		html,body,div,a{
+			margin: 0;
+			padding: 0;
+		}
+		.list{
+			padding: 10px 0 10px 10px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.page{
+			margin: 0 10px 10px;
+			width: 260px;
+			border: 1px solid #ccc;
+		}
+		.p-title{
+			text-align: center;
+			padding-bottom: 10px;
+		}
+		canvas{
+			width: 260px;
+			height: 260px;
+		}
+	</style>
+</head>
+<body>
+	<div class="list"></div>
+	<canvas id="canvas" width="400" height="400"></canvas>
+	<script>
+//docs-start
+var docs = ["A04","A05","A06","A07","A08","A09","A11","A12","A13","A14","A15","A16","C01","C02","C03","C04","C05","C06","C07","C08","C09","C10","C11","C12","CPJ01","CPJ02","CPJ03","CPJ04","CPJ05","CPJ06","CPJ07","CPJ09","CPJ10","CPJ12","G01","G02","G03","G04","G05","G06","G07","G08","G09","G10","G11","G12","P01","P02","P04","PLI200","README","SS01","SS02","SS03","SS04","SS05","SS06","SS07","SS08","SS09","SS10","SS11","YM01"];
+//docs-end
+
+		let html = [];
+		for(let i of docs) {
+			html.push(`
+				<a href="/note/${i}" target="_blank" class="page">
+					<canvas id="c_${i}" width="260" height="260"></canvas>
+					<div class="p-title">${i}</div>
+				</a>
+			`);
+		}
+		document.querySelector('.list').innerHTML = html.join('');
+		for(let i of docs){	
+		  QRCode.toCanvas(document.getElementById('c_'+i), 'https://great-super.github.io/note/'+i, {width:260},function (error) {
+		    if (error) console.error(error)
+		  })
+		}
+</script>
+</body>
+</html>
